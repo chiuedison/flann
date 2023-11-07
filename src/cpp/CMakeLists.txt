@@ -8,6 +8,11 @@ file(GLOB_RECURSE C_SOURCES flann.cpp)
 file(GLOB_RECURSE CPP_SOURCES flann_cpp.cpp)
 file(GLOB_RECURSE CU_SOURCES *.cu)
 
+add_subdirectory(lz4)
+list(APPEND CPP_SOURCES ${LZ4_SOURCES})
+list(APPEND C_SOURCES ${LZ4_SOURCES})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/lz4)
+
 add_library(flann_cpp_s STATIC ${CPP_SOURCES})
 target_link_libraries(flann_cpp_s PUBLIC ${LZ4_LINK_LIBRARIES})
 if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_CLANG)
